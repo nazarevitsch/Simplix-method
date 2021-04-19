@@ -1,13 +1,24 @@
+from enum import Enum
+
+
+class MinMax(Enum):
+    NONE = 0
+    MIN = 1
+    MAX = 2
+
+
 class Table:
     table = [[]]
     metadata_row = []
     metadata_column = []
+    min_max = MinMax.NONE
 
 
-    def __init__(self, table, metadata_row, metadata_column):
+    def __init__(self, table, metadata_row, metadata_column, min_max):
         self.table = table
         self.metadata_row = metadata_row
         self.metadata_column = metadata_column
+        self.min_max = min_max
 
 
     def clone(self):
@@ -18,7 +29,7 @@ class Table:
             i += 1
         metadata_row = self.metadata_row.copy()
         metadata_column = self.metadata_column.copy()
-        return Table(table, metadata_row, metadata_column)
+        return Table(table, metadata_row, metadata_column, self.min_max)
 
 
     def print(self):
