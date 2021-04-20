@@ -6,17 +6,16 @@ def calculate_two_steps(table):
     result_index_column = find_row_index_of_result(table)
     index_r_row = find_index_of_row_by_letter(table, 'R')
 
-    table.print()
-    print("\n\nStart of First Step\n\n")
+    table.print('Init Table.')
     while not check(table, index_r_row):
         min_max_index_in_r_column = find_min_max_index_in_column(table, index_r_row, result_index_column)
         index_min_result_row = find_min_index_in_result(table, result_index_column, index_r_row, min_max_index_in_r_column)
         table.metadata_column[index_min_result_row] = table.metadata_row[min_max_index_in_r_column]
         divide_row(table, index_min_result_row, min_max_index_in_r_column)
         table = switch_after_dividing(table, index_min_result_row, min_max_index_in_r_column)
-        table.print()
+        table.print('First Step')
     table = prepare_table(table)
-    print("\n\nStart of Second Step\n\n")
+    table.print('Prepared Table')
     calculate_one_step(table)
 
 
@@ -30,7 +29,7 @@ def calculate_one_step(table):
         table.metadata_column[index_min_result_row] = table.metadata_row[min_index_in_z_column]
         divide_row(table, index_min_result_row, min_index_in_z_column)
         table = switch_after_dividing(table, index_min_result_row, min_index_in_z_column)
-        table.print()
+        table.print('Second Step')
 
 
 def prepare_table(table):

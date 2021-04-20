@@ -32,8 +32,8 @@ class Table:
         return Table(table, metadata_row, metadata_column, self.min_max)
 
 
-    def print(self):
-        print("Table:\n_" + "_________" * (len(self.metadata_row) + 1))
+    def print(self, title):
+        print("Table: " + title + "\n_" + "_________" * (len(self.metadata_row) + 1))
         print("|        |", end='')
         i = 0
         while i < len(self.metadata_row):
