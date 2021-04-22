@@ -13,13 +13,19 @@ class Table:
     metadata_column = []
     min_max = MinMax.NONE
 
-
     def __init__(self, table, metadata_row, metadata_column, min_max):
         self.table = table
         self.metadata_row = metadata_row
         self.metadata_column = metadata_column
         self.min_max = min_max
+        self.prove()
 
+    def prove(self):
+        if len(self.table) != len(self.metadata_column):
+           raise Exception('Len of metadata column and rows len in matrix are unequal!')
+        for i in self.table:
+            if len(i) != len(self.metadata_row):
+                raise Exception('Len of metadata row and len of row in matrix are unequal!')
 
     def clone(self):
         table = []
@@ -30,7 +36,6 @@ class Table:
         metadata_row = self.metadata_row.copy()
         metadata_column = self.metadata_column.copy()
         return Table(table, metadata_row, metadata_column, self.min_max)
-
 
     def print(self, title):
         print("Table: " + title + "\n_" + "_________" * (len(self.metadata_row) + 1))

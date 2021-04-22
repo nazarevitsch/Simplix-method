@@ -35,6 +35,9 @@ def calculate_one_step(table):
 def prepare_table(table):
     i = len(table.metadata_column) - 1
     while i >= 0:
+        print(i)
+        print(table.metadata_column[i])
+        table.print("a")
         if 'R' in table.metadata_column[i]:
             table.table.pop(i)
             table.metadata_column.pop(i)
